@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/cpuy/angular-game-of-life.svg?branch=master)](https://travis-ci.org/cpuy/angular-game-of-life)
 # GameOfLife
 http://www.codingdojo.org/cgi-bin/index.pl?KataGameOfLife
 

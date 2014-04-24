@@ -1,0 +1,52 @@
+/* app css stylesheet */
+body {
+    padding: 0;
+    font: 1.25em/1.75em "DroidSerifRegular";
+    letter-spacing: 0.075em;
+    margin: 0;
+    color: #444444;
+}
+
+header {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    background-color: #3F1E4A;
+    width: 100%;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+    font-size:40px;
+    font-weight: bold;
+    font-family: Georgia,Times New Roman,serif;
+    height: auto;
+    letter-spacing: -3px;
+    text-shadow: 2px 2px #151A1D;
+    width: auto;
+}
+
+.alive {
+    background-color: yellow;
+}
+
+table.grid {
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 20px;
+}
+
+table.grid th, td {
+    border: 1px solid black;
+}
+
+.cell{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.content {
+    text-align: center;
+}

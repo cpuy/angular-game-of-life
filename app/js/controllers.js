@@ -81,7 +81,7 @@ Grid.prototype.nextGeneration = function () {
     }
 };
 
-angular.module('myApp.controllers', [])
+angular.module('gameOfLife.controllers', [])
   .controller('GridCtrl', [ '$scope', '$timeout', 'grid', function($scope, $timeout, grid) {
         $scope.grid = grid;
 

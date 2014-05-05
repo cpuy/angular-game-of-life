@@ -82,7 +82,7 @@ Grid.prototype.nextGeneration = function () {
 };
 
 angular.module('gameOfLife.controllers', [])
-  .controller('GridCtrl', [ '$scope', '$timeout', 'grid', function($scope, $timeout, grid) {
+  .controller('GridCtrl', [ '$scope', '$interval', 'grid', function($scope, $interval, grid) {
         $scope.grid = grid;
 
         $scope.toggleLife = function(cell) {
@@ -90,14 +90,11 @@ angular.module('gameOfLife.controllers', [])
         };
 
         $scope.nextGeneration = function() {
-            loop();
+            $interval(loop, 600);
         };
 
         function loop(delay) {
-            $timeout(function() {
                 $scope.grid = $scope.grid.nextGeneration();
-                $timeout(loop, 300);
-            }, 300);
-        }
+        };
   }])
   .service('grid', Grid);

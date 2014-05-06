@@ -37,21 +37,35 @@ angular.module('service.grid', [])
 
         var nextGeneration = function (grid) {
             var count = 0;
+            var newGrid = new Grid(grid.nbColumns, grid.nbColumns);
 
             for (var i = 0; i < grid.nbRows; i++) {
                 for (var j = 0; j < grid.nbColumns; j++) {
-                    if (grid[i][j].alive) {
+
+                    count = countAliveNeighbours(grid, i, j);
+                    if (count === 3) {
+                        newGrid[i][j].alive = true;
+                    }
+
+                    else if (grid[i][j].alive && count === 2) {
+                        newGrid[i][j].alive = true;
+                    }
+                }
+            }
+            return newGrid;
+        };
+
+        var countAliveNeighbours = function(grid, columnIdx, rowIdx) {
+            var count = 0;
+            for (var i = columnIdx - 1; i <= columnIdx + 1; i++) {
+                for (var j = rowIdx - 1; j <= rowIdx + 1; j++) {
+                    if (!(i == columnIdx && j == rowIdx) && grid[i] && grid[i][j] && grid[i][j].alive) {
                         count += 1;
                     }
                 }
             }
-
-            if (count === 3 ) {
-                return grid;
-            } else {
-                return new Grid(grid.nbColumns, grid.nbColumns);;
-            }
-        };
+            return count;
+        }
 
         return {
             create: createGrid,

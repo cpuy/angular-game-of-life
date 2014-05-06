@@ -13,21 +13,16 @@ describe('game of life grid', function () {
         it('should be created with dead cells', function () {
             var aGrid = grid.create(2, 2);
 
-            expect(aGrid).toEqual([
-                [
-                    {alive: false},
-                    {alive: false}
-                ],
-                [
-                    {alive: false},
-                    {alive: false}
-                ]
-            ])
+            aGrid.forEach(function(row) {
+                row.forEach(function(cell) {
+                    expect(cell.alive).toBeFalsy();
+                });
+            });
         });
     });
 
     describe('a cell', function () {
-        it('should be resurrect', function () {
+        it('can be resurrect', function () {
             var aGrid= grid.create(2, 2);
 
             grid.toggleLife(aGrid[1][1]);
@@ -35,7 +30,7 @@ describe('game of life grid', function () {
             expect(aGrid[1][1].alive).toBeTruthy();
         });
 
-        it('should be killed', function () {
+        it('can be killed', function () {
             var aGrid = grid.create(2, 2);
             aGrid[1][1].alive = true;
 

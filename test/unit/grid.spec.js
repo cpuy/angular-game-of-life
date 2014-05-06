@@ -21,7 +21,7 @@ describe('game of life grid', function () {
         });
     });
 
-    describe('a cell', function () {
+    describe('a dead cell', function () {
         it('can be resurrect', function () {
             var aGrid= grid.create(2, 2);
 
@@ -30,6 +30,10 @@ describe('game of life grid', function () {
             expect(aGrid[1][1].alive).toBeTruthy();
         });
 
+
+    });
+
+    describe('a live cell', function () {
         it('can be killed', function () {
             var aGrid = grid.create(2, 2);
             aGrid[1][1].alive = true;
@@ -38,10 +42,8 @@ describe('game of life grid', function () {
 
             expect(aGrid[1][1].alive).toBeFalsy();
         });
-    });
 
-    describe('Any live cell with fewer than two live neighbours', function() {
-        it('should dies, as if caused by underpopulation.', function() {
+        it('should dies if it has fewer than two live neighbours, as if caused by underpopulation.', function() {
             var aGrid = grid.create(2, 2);
             aGrid[0][0].alive = true;
 

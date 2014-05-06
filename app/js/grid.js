@@ -10,29 +10,38 @@ angular.module('service.grid', [])
             return { alive: false };
         };
 
-        var create = function (nbColumn, nbRows) {
-            var cells = [], i = 0;
+        var Grid = function(nbColumns, nbRows) {
+            this.nbColumns = nbColumns || 12;
+            this.nbRows = nbRows || 12;
 
-            for (i = 0; i < nbRows; i++) {
-                cells.push(createColumn());
+            for (var i = 0; i < nbRows; i++) {
+                this[i] = createColumn();
             }
-            return cells;
 
             function createColumn() {
-                var column = [], j = 0;
-                for (j = 0; j < nbColumn; j++) {
-                    column.push(new Cell());
+                var column = {}, j = 0;
+                for (j = 0; j < nbColumns; j++) {
+                    column[j] = new Cell();
                 }
                 return column;
             };
+        };
+
+        var createGrid = function (nbColumns, nbRows) {
+            return new Grid(nbColumns, nbRows);
         };
 
         var toggleLife = function (cell) {
             cell.alive = !cell.alive;
         };
 
+        var nextGeneration = function (grid) {
+            return createGrid(grid.nbColumns, grid.nbColumns);
+        };
+
         return {
-            create: create,
-            toggleLife: toggleLife
+            create: createGrid,
+            toggleLife: toggleLife,
+            nextGeneration: nextGeneration
         };
     });

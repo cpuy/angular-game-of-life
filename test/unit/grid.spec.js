@@ -13,11 +13,11 @@ describe('game of life grid', function () {
         it('should be created with dead cells', function () {
             var aGrid = grid.create(2, 2);
 
-            aGrid.forEach(function(row) {
-                row.forEach(function(cell) {
-                    expect(cell.alive).toBeFalsy();
-                });
-            });
+            for (var i = 0; i < aGrid.nbRows; i++) {
+                for (var j = 0; j < aGrid.nbColumns; j++) {
+                    expect(aGrid[i][j].alive).toBeFalsy();
+                }
+            }
         });
     });
 
@@ -37,6 +37,17 @@ describe('game of life grid', function () {
             grid.toggleLife(aGrid[1][1]);
 
             expect(aGrid[1][1].alive).toBeFalsy();
+        });
+    });
+
+    describe('Any live cell with fewer than two live neighbours', function() {
+        it('should dies, as if caused by underpopulation.', function() {
+            var aGrid = grid.create(2, 2);
+            aGrid[0][0].alive = true;
+
+            aGrid = grid.nextGeneration(aGrid);
+
+            expect(aGrid[0][0].alive).toBeFalsy();
         });
     });
 });

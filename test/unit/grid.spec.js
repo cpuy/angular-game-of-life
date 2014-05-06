@@ -46,10 +46,23 @@ describe('game of life grid', function () {
         it('should dies if it has fewer than two live neighbours, as if caused by underpopulation.', function() {
             var aGrid = grid.create(2, 2);
             aGrid[0][0].alive = true;
+            aGrid[0][1].alive = true;
 
             aGrid = grid.nextGeneration(aGrid);
 
             expect(aGrid[0][0].alive).toBeFalsy();
+            expect(aGrid[0][1].alive).toBeFalsy();
+        });
+
+        it('should live if it has more than two live neighbours, as if caused by underpopulation.', function() {
+            var aGrid = grid.create(2, 2);
+            aGrid[0][0].alive = true;
+            aGrid[1][0].alive = true;
+            aGrid[0][1].alive = true;
+
+            aGrid = grid.nextGeneration(aGrid);
+
+            expect(aGrid[0][0].alive).toBeTruthy();
         });
     });
 });

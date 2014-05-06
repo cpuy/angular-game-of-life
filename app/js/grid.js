@@ -36,7 +36,21 @@ angular.module('service.grid', [])
         };
 
         var nextGeneration = function (grid) {
-            return createGrid(grid.nbColumns, grid.nbColumns);
+            var count = 0;
+
+            for (var i = 0; i < grid.nbRows; i++) {
+                for (var j = 0; j < grid.nbColumns; j++) {
+                    if (grid[i][j].alive) {
+                        count += 1;
+                    }
+                }
+            }
+
+            if (count === 3 ) {
+                return grid;
+            } else {
+                return new Grid(grid.nbColumns, grid.nbColumns);;
+            }
         };
 
         return {

@@ -13,6 +13,7 @@ angular.module('service.grid', [])
         var Grid = function (nbColumns, nbRows) {
             this.nbColumns = nbColumns || 12;
             this.nbRows = nbRows || 12;
+            this.cells = [];
 
             this.countAliveNeighbours = function (columnIdx, rowIdx) {
                 var count = 0;
@@ -27,15 +28,15 @@ angular.module('service.grid', [])
             };
 
             this.isAlive = function (columnIdx, rowIdx) {
-                return this[columnIdx] && this[columnIdx][rowIdx] && this[columnIdx][rowIdx].alive;
+                return this.cells[columnIdx] && this.cells[columnIdx][rowIdx] && this.cells[columnIdx][rowIdx].alive;
             };
 
             for (var i = 0; i < nbRows; i++) {
-                this[i] = createColumn();
+                this.cells[i] = createColumn();
             }
 
             function createColumn() {
-                var column = {}, j = 0;
+                var column = [], j = 0;
                 for (j = 0; j < nbColumns; j++) {
                     column[j] = new Cell();
                 }
@@ -58,7 +59,7 @@ angular.module('service.grid', [])
             for (var i = 0; i < grid.nbRows; i++) {
                 for (var j = 0; j < grid.nbColumns; j++) {
                     if (shouldBeAlive(i, j)) {
-                        nextGenGrid[i][j].alive = true;
+                        nextGenGrid.cells[i][j].alive = true;
                     }
                 }
             }
@@ -66,7 +67,7 @@ angular.module('service.grid', [])
 
             function shouldBeAlive(i, j) {
                 count = grid.countAliveNeighbours(i, j);
-                if (count === 3 || (grid[i][j].alive && count === 2)) {
+                if (count === 3 || (grid.cells[i][j].alive && count === 2)) {
                     return true;
                 }
             }

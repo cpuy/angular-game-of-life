@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gameOfLife.controllers', ['service.grid'])
+angular.module('controller.grid', ['service.grid'])
     .controller('GridCtrl', [ '$scope', '$interval', 'gridService', function ($scope, $interval, gridService) {
         $scope.grid = gridService.create(12, 12);
 

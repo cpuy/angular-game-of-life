@@ -57,18 +57,19 @@ angular.module('service.grid', [])
 
             for (var i = 0; i < grid.nbRows; i++) {
                 for (var j = 0; j < grid.nbColumns; j++) {
-
-                    count = grid.countAliveNeighbours(i, j);
-                    if (count === 3) {
-                        nextGenGrid[i][j].alive = true;
-                    }
-
-                    else if (grid[i][j].alive && count === 2) {
+                    if (shouldBeAlive(i, j)) {
                         nextGenGrid[i][j].alive = true;
                     }
                 }
             }
             return nextGenGrid;
+
+            function shouldBeAlive(i, j) {
+                count = grid.countAliveNeighbours(i, j);
+                if (count === 3 || (grid[i][j].alive && count === 2)) {
+                    return true;
+                }
+            }
         };
 
         return {

@@ -1,0 +1,8 @@
+<div class="content" ng-controller="GridCtrl">
+    <button type="button" class="btn btn-default" ng-click="nextGeneration()">Launch simulation</button>
+    <table class="grid">
+        <tr ng-repeat="row in grid.cells">
+            <td ng-repeat="cell in row" ng-click="toggleLife(cell)" class="cell" ng-class="{ alive: cell.alive}" />
+        </tr>
+    </table>
+</div>

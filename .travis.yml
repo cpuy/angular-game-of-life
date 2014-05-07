@@ -1,14 +1,19 @@
 language: node_js
 node_js:
-  - 0.10
-
+- 0.1
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - npm start > /dev/null &
-  - npm run update-webdriver
-  - sleep 1 # give server time to start
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- npm start > /dev/null &
+- npm run update-webdriver
+- sleep 1
 script:
-  - node_modules/.bin/karma start test/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
-#  - node_modules/.bin/protractor test/protractor-conf.js --browser=firefox
+- node_modules/.bin/karma start test/karma.conf.js --no-auto-watch --single-run --reporters=dots
+  --browsers=Firefox
+deploy:
+  provider: heroku
+  api_key:
+    secure: QtRqenp7Dgd+VbwjS+pifXtErQBhXMlRn1wGyj+ilQWxM3yR/2xr0ZL2ssiHxZiJxdYnji64x0YQSPjTf21nWezIafT8ziBAxEOO+tyMztlNGjbHffmsv49WHzNzkA3Rq9t2zcJpIKcEZuMItlEoQMhT+ii4x3aM+J9u0g1wEVU=
+  app: angular-game-of-life
+  on:
+    repo: cpuy/angular-game-of-life

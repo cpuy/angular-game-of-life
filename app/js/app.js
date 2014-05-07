@@ -1,4 +1,4 @@
 'use strict';
 
 
-angular.module('gameOfLife', [ 'controller.grid' ]);
+angular.module('gameOfLife', [ 'controller.grid', 'directive.grid' ]);

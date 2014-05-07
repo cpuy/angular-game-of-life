@@ -1,6 +1,6 @@
 'use strict'
 
-describe('game of life grid', function () {
+describe('grid service', function () {
     var grid;
 
     beforeEach(module('service.grid'));
